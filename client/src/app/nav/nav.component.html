@@ -7,7 +7,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse"> -->
 
-          <ul class="navbar-nav mr-auto" *ngIf="loggedIn">
+          <ul class="navbar-nav mr-auto" *ngIf="accountService.currenUser$ | async">
             <li class="nav-item active">
               <a class="nav-link" href="#">Matches</a>
             </li>
@@ -15,23 +15,21 @@
               <a class="nav-link" href="#">Lists</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Messages</a>
+              <a class="nav-link" href="#">Messages</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" (click) = "logout()">Logout</a>
-              </li>
+
           </ul>
 
-          <div class="dropdown"*ngIf="loggedIn">
-              <a class="dropdown-toggle text-light">Welcom user</a>
-              <div class="dropdown-menu">
+          <div class="dropdown"*ngIf="accountService.currenUser$ | async" dropdown>
+              <a class="dropdown-toggle text-light" dropdownToggle>Welcom user</a>
+              <div class="dropdown-menu mt-3" *dropdownMenu>
                   <a class="dropdown-item">Edit profile</a>
                   <div class="dropddown-divider"></div>
-                  <a class="dropdown-item" (click) ="logout()">Loggout</a>
+                  <a class="dropdown-item" (click)="logout()">Logout</a>
               </div>
           </div>
 
-          <form *ngIf="!loggedIn" #loginForm = "ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit) = "login()"
+          <form *ngIf="(accountService.currenUser$ | async) === null" #loginForm = "ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()"
             autocomplete="off">
             <input 
                 name="username"
