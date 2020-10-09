@@ -40,7 +40,7 @@ namespace API.DATA.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "KnowsAs",
+                name: "KnownAs",
                 table: "Users",
                 nullable: true);
 
@@ -118,7 +118,7 @@ namespace API.DATA.Migrations
                 table: "Users");
 
             migrationBuilder.DropColumn(
-                name: "KnowsAs",
+                name: "KnownAs",
                 table: "Users");
 
             migrationBuilder.DropColumn(
