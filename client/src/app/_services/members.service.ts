@@ -43,4 +43,12 @@ members: Member[] = [];
       })
     )
   }
+
+  setMainPhoto(photoId: number){
+    return this.http.put(this.apiUrl + 'users/set-main-photo/' + photoId,{});
+  }
+
+  deletePhoto(photoId: number){
+    return this.http.delete(this.apiUrl + 'users/delete-photo/' + photoId);
+  }
 }
